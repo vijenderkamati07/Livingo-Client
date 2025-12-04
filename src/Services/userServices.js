@@ -2,6 +2,7 @@ export const fetchHomes = async () => {
   try {
     const response = await fetch("https://livingo-backend.onrender.com/api/homes", {
       method: "GET",
+      credentials: "include"
     });
     const data = await response.json();
     return data;
@@ -15,6 +16,7 @@ export const fetchHomeDetails = async (homeId) => {
   try {
     const response = await fetch(`https://livingo-backend.onrender.com/api/homes/${homeId}`, {
       method: "GET",
+      credentials: "include"
     });
     const data = await response.json();
     return data;
