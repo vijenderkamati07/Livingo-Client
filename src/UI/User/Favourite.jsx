@@ -1,24 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchFavourites, removeFavourite } from "../../Services/userServices";
 import { Link, useNavigate } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { AuthContext } from "../../Context/AuthContext";
 
 export default function Favourite() {
   const [favHomes, setFavHomes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [removingId, setRemovingId] = useState(null);
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);   // 🔥 we need this
 
-useEffect(() => {
-  fetchFavourites().then((data) => {
-    if (data?.unauthorized) {
-      navigate("/login");
-      return;
-    }
-    setFavHomes(Array.isArray(data) ? data : []);
-  }).finally(() => setLoading(false));
-}, []);
+  useEffect(() => {
+    const loadFavs = async () => {
+      try {
+        const data = await fetchFavourites();
+
+        if (data?.unauthorized) {
+          // 🔥 backend says session is invalid -> frontend must believe it
+          setUser(null);
+          navigate("/login");
+          return;
+        }
+
+        setFavHomes(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("Failed to load favourites:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadFavs();
+  }, [navigate, setUser]);
+
 
 
 const handleRemove = async (homeId) => {

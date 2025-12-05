@@ -24,7 +24,6 @@ export default function Login() {
       return;
     }
 
-    // 🔥 update global auth instantly
     setUser(res.user);
 
     navigate("/"); // redirect to homepage
