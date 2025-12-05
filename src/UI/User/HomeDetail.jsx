@@ -30,29 +30,29 @@ export default function HomeDetail() {
     }
   };
 
-  // 🔥 SESSION REVALIDATION (IMPORTANT FIX TO KEEP USER LOGGED IN)
-  useEffect(() => {
-    const revalidateSession = async () => {
-      try {
-        const response = await fetch(
-          "https://livingo-backend.onrender.com/api/session",
-          {
-            credentials: "include", // ⬅ ensures cookies are sent
-          }
-        );
+  // // 🔥 SESSION REVALIDATION (IMPORTANT FIX TO KEEP USER LOGGED IN)
+  // useEffect(() => {
+  //   const revalidateSession = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://livingo-backend.onrender.com/api/session",
+  //         {
+  //           credentials: "include", // ⬅ ensures cookies are sent
+  //         }
+  //       );
 
-        if (!response.ok) {
-          console.error("Session invalid. Redirecting to login.");
-          navigate("/login");
-        }
-      } catch (error) {
-        console.error("Error validating session:", error);
-        navigate("/login"); // fallback on network failure
-      }
-    };
+  //       if (!response.ok) {
+  //         console.error("Session invalid. Redirecting to login.");
+  //         navigate("/login");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error validating session:", error);
+  //       navigate("/login"); // fallback on network failure
+  //     }
+  //   };
 
-    revalidateSession();
-  }, [navigate]);
+  //   revalidateSession();
+  // }, [navigate]);
   // ⚠ Without this hook, backend cookie session is never checked and login expires instantly upon navigation.
 
   // FETCH HOME DETAILS
