@@ -79,11 +79,13 @@ export const removeFavourite = async (homeId) => {
         credentials: "include",
       }
     );
-    if (!response.status) {
-      throw new Error("Failed to remove favourite");
-    }
+
+    const data = await response.json(); // parse backend JSON
+
+    return data; // 🔥 send success result to UI
   } catch (error) {
     console.error("Error removing favourite:", error);
-    throw error;
+    return { success: false };
   }
 };
+

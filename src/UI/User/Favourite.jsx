@@ -39,13 +39,15 @@ export default function Favourite() {
 
 const handleRemove = async (homeId) => {
   const res = await removeFavourite(homeId);
-  if (!res.success) return; // <-- do not animate if API failed
+  if (!res.success) return;       // now this works correctly
+
   setRemovingId(homeId);
   setTimeout(() => {
     setFavHomes(prev => prev.filter(h => h._id !== homeId));
     setRemovingId(null);
   }, 350);
 };
+
 
 
   return (
