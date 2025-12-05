@@ -17,6 +17,10 @@ export const addHomeService = async (formData) => {
     body: formData,
   });
 
+  if(res.status===402){
+    throw new Error("Img type not supported")
+  }
+
   if (!res.ok) throw new Error("Failed to add home");
   return res.json();
 };

@@ -14,6 +14,7 @@ import Signup from './UI/Auth/Signup.jsx'
 import HostHomeList from './UI/Host/HostHomeList.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthProvider } from './Context/AuthContext.jsx'
+import { ToastContainer } from "react-toastify";
 
 
 const router=createBrowserRouter([

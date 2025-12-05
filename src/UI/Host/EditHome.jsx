@@ -66,7 +66,9 @@ export default function AddHome() {
           description: h.description || "",
         });
         if (h.photo)
-          setImagePreview(`https://livingo-backend.onrender.com/uploads/${h.photo}`);
+          setImagePreview(
+            `https://livingo-backend.onrender.com/uploads/${h.photo}`
+          );
       } catch {
         toast.error("Unable to load home");
       } finally {
@@ -75,7 +77,6 @@ export default function AddHome() {
     })();
   }, [editing, homeId]);
 
-  // 🔥 dynamic progress
   const completionFields = [
     formData.houseName,
     formData.location,
@@ -110,12 +111,12 @@ export default function AddHome() {
         await updateHomeService(homeId, data);
         toast.success("Home updated!");
       } else {
-        await addHomeService(data);
+        const result = await addHomeService(data);
         toast.success("Home added!");
       }
       navigate("/host/host-homes");
-    } catch {
-      toast.error("Something went wrong");
+    } catch (err) {
+      toast.error(err.message || "Something went wrong");
     } finally {
       setSubmitting(false);
     }
