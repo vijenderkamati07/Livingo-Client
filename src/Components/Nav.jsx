@@ -66,7 +66,6 @@ export default function Navbar() {
             ) : (
               <>
                 <li><Link to="/" className="navlink ui-action">Home</Link></li>
-                <li><Link to="/homes" className="navlink ui-action">Homes</Link></li>
               </>
             )}
           </ul>
