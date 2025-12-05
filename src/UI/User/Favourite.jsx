@@ -81,7 +81,7 @@ const handleRemove = async (homeId) => {
           )}
 
           <button
-            onClick={() => navigate("/homes")}
+            onClick={() => navigate("/listed-homes")}
             className="ui-action host-btn mt-6 inline-flex"
           >
             Discover More Homes
@@ -199,7 +199,7 @@ const handleRemove = async (homeId) => {
                 favourites for your next getaway.
               </p>
               <button
-                onClick={() => navigate("/homes")}
+                onClick={() => navigate("/listed-homes")}
                 className="fav-btn mt-1"
               >
                 Discover Homes

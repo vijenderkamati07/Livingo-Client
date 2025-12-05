@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from "react-router-dom";
 
 
-function HomeList({ title = "Listed Homes page is under upgrade" }) {
+function Profile({ title = "Profile page is under upgrade" }) {
   return (
 
     <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden bg-[#0E0D13]">
@@ -55,4 +55,4 @@ function HomeList({ title = "Listed Homes page is under upgrade" }) {
 }
 
 
-export default HomeList
+export default Profile

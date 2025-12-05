@@ -162,7 +162,7 @@ export default function Home() {
           </p>
 
           <button
-            onClick={() => navigate("/home-list")}
+            onClick={() => navigate("/listed-homes")}
             className="px-8 py-3 bg-gradient-to-r from-[#8C5FF6] to-[#F43F63] rounded-full text-white font-semibold shadow-lg hover:scale-[1.04] transition-all"
           >
             Explore all homes →
@@ -306,22 +306,22 @@ export default function Home() {
     </div>
 
     <div className="escape-grid">
-      <button className="escape-btn" onClick={() => navigate("/home-list?category=Villas")}>
+      <button className="escape-btn" onClick={() => navigate("/listed-homes?category=Villas")}>
         🏝 Villas
       </button>
-      <button className="escape-btn" onClick={() => navigate("/home-list?category=Resort")}>
+      <button className="escape-btn" onClick={() => navigate("/listed-homes?category=Resort")}>
         🌅 Resorts
       </button>
-      <button className="escape-btn" onClick={() => navigate("/home-list?category=Hostels")}>
+      <button className="escape-btn" onClick={() => navigate("/listed-homes?category=Hostels")}>
         🎒 Hostels
       </button>
-      <button className="escape-btn" onClick={() => navigate("/home-list?category=Rooms")}>
+      <button className="escape-btn" onClick={() => navigate("/listed-homes?category=Rooms")}>
         💰 Budget Rooms
       </button>
     </div>
 
     <button
-      onClick={() => navigate("/home-list")}
+      onClick={() => navigate("/listed-homes")}
       className="escape-cta"
     >
       Explore all stays →

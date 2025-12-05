@@ -59,7 +59,7 @@ export default function Navbar() {
               ) : (
                 <>
                   <li><Link to="/" className="navlink ui-action">Home</Link></li>
-                  <li><Link to="/homes" className="navlink ui-action">Listed Homes</Link></li>
+                  <li><Link to="/listed-homes" className="navlink ui-action">Listed Homes</Link></li>
                   <li><Link to="/bookings" className="navlink ui-action">Bookings</Link></li>
                 </>
               )
@@ -106,7 +106,7 @@ export default function Navbar() {
 
                 <div className="absolute right-0 mt-2 w-52 bg-[#18171F] border border-[#2D2A37] rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out dropdown-menu">
 
-                  <Link to="/profile" className="dropdown-btn">My Profile</Link>
+                  <Link to="/user/profile" className="dropdown-btn">My Profile</Link>
 
                   {user.userType === "guest" && (
                     <>
@@ -161,7 +161,7 @@ export default function Navbar() {
                 </>
               ) : (
                 <>
-                  <li><Link to="/homes" className="ui-action">Homes</Link></li>
+                  <li><Link to="/listed-homes" className="ui-action">Homes</Link></li>
                   <li><Link to="/favourite" className="ui-action">Wishlist</Link></li>
                   <li><Link to="/host/add-home" className="ui-action">Become a Host</Link></li>
                 </>
@@ -169,7 +169,7 @@ export default function Navbar() {
             ) : null}
 
             {user && <li><Link to="/bookings" className="ui-action">Bookings</Link></li>}
-            {user && <li><Link to="/profile" className="ui-action">Profile</Link></li>}
+            {user && <li><Link to="/user/profile" className="ui-action">Profile</Link></li>}
 
             {user ? (
               <button onClick={handleLogout} className="text-left w-full text-[#F97373] ui-action">Logout</button>

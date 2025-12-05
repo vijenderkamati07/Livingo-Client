@@ -15,6 +15,8 @@ import HostHomeList from './UI/Host/HostHomeList.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthProvider } from './Context/AuthContext.jsx'
 import { ToastContainer } from "react-toastify";
+import LostPage from './UI/LostPage.jsx';
+import Profile from './UI/User/Profile.jsx';
 
 
 const router=createBrowserRouter([
@@ -27,7 +29,7 @@ const router=createBrowserRouter([
         element:<Home/>
       },
       {
-        path:"/homes",
+        path:"/listed-homes",
         element:<HomeList/>
       },
       {
@@ -61,7 +63,14 @@ const router=createBrowserRouter([
       {
         path:"/signup",
         element:<Signup/>
-      }
+      },
+      {
+        path:"/user/profile",
+        element:<Profile/>
+      },
+      { 
+        path: "*",
+        element: <LostPage /> }
     ]
   }
 ]

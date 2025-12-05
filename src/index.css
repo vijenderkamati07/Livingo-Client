@@ -1422,3 +1422,262 @@ button {
   color: #9D9AC6;
   opacity: 0.85;
 }
+
+
+/*------404 Page-------*/
+.notfound-shell {
+  position: relative;
+  border-radius: 26px;
+  padding: 26px 22px;
+  background:
+    radial-gradient(circle at top left, rgba(140, 95, 246, 0.22), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(244, 63, 99, 0.22), transparent 60%),
+    #111019;
+  border: 1px solid #2d2a37;
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(140, 95, 246, 0.35);
+  overflow: hidden;
+}
+
+/* Left visual */
+
+.nf-visual {
+  position: relative;
+}
+
+.nf-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(22px);
+  opacity: 0.9;
+}
+
+.nf-glow-top {
+  inset: -40px -40px auto auto;
+  background: radial-gradient(circle, rgba(140, 95, 246, 0.38), transparent 60%);
+}
+
+.nf-glow-bottom {
+  inset: auto auto -40px -40px;
+  background: radial-gradient(circle, rgba(244, 63, 99, 0.42), transparent 60%);
+}
+
+.nf-card {
+  position: absolute;
+  border-radius: 20px;
+  background: #171620;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+}
+
+/* main floating card */
+.nf-card-main {
+  inset: 18% 8% auto 4%;
+  padding: 18px 18px 16px;
+  max-width: 280px;
+  animation: nfFloat 6s ease-in-out infinite;
+}
+
+.nf-card-tag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: rgba(15, 23, 42, 0.9);
+  color: #c4b5fd;
+  border: 1px solid rgba(140, 95, 246, 0.6);
+  margin-bottom: 10px;
+}
+
+.nf-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 4px;
+}
+
+.nf-card-meta {
+  font-size: 12px;
+  color: #9d99b0;
+}
+
+/* side label cards */
+
+.nf-card-secondary {
+  padding: 10px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #e5e3f3;
+  background: #15141f;
+}
+
+.nf-card-left {
+  left: 2%;
+  bottom: 10%;
+  animation: nfFloat 7.2s ease-in-out infinite;
+}
+
+.nf-card-right {
+  right: 4%;
+  top: 10%;
+  animation: nfFloat 5.4s ease-in-out infinite;
+}
+
+.nf-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+.nf-line {
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8c5ff6, #f43f63);
+}
+
+.nf-label {
+  white-space: nowrap;
+}
+
+/* map pin */
+
+.nf-pin {
+  position: absolute;
+  inset: auto 28% 18% auto;
+}
+
+.nf-pin-pulse,
+.nf-pin-core {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 999px;
+}
+
+.nf-pin-pulse {
+  width: 34px;
+  height: 34px;
+  background: radial-gradient(circle, rgba(244, 63, 99, 0.35), transparent 60%);
+  animation: nfPulse 2.2s ease-out infinite;
+}
+
+.nf-pin-core {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #8c5ff6, #f43f63);
+  box-shadow: 0 0 18px rgba(244, 63, 99, 0.85);
+}
+
+/* Right text area */
+
+.nf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f97373;
+  background: rgba(127, 29, 29, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.5);
+}
+
+.nf-title {
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .nf-title {
+    font-size: 32px;
+  }
+}
+
+.nf-sub {
+  font-size: 13px;
+  color: #c9c5d4;
+  max-width: 24rem;
+}
+
+.nf-list {
+  font-size: 12px;
+  color: #9d99b0;
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Buttons */
+
+.nf-btn {
+  padding: 0.70rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #8c5ff6, #f43f63);
+  color: #ffffff;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 28px rgba(140, 95, 246, 0.65);
+}
+
+.nf-secondary-link {
+  font-size: 13px;
+  color: #c9c5d4;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #2d2a37;
+  background: #111019;
+  transition: all 0.22s ease;
+}
+
+.nf-secondary-link:hover {
+  border-color: #4b3a88;
+  background: #181329;
+  color: #ffffff;
+}
+
+/* Animations */
+
+@keyframes nfFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes nfPulse {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-slow {
+  0% { transform: scale(1); opacity: .24; }
+  50% { transform: scale(1.11); opacity: .32; }
+  100% { transform: scale(1); opacity: .24; }
+}
