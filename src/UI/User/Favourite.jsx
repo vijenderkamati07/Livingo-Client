@@ -10,20 +10,27 @@ export default function Favourite() {
   const [removingId, setRemovingId] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchFavourites()
-      .then((data) => setFavHomes(Array.isArray(data) ? data : []))
-      .finally(() => setLoading(false));
-  }, []);
+useEffect(() => {
+  fetchFavourites().then((data) => {
+    if (data?.unauthorized) {
+      navigate("/login");
+      return;
+    }
+    setFavHomes(Array.isArray(data) ? data : []);
+  }).finally(() => setLoading(false));
+}, []);
 
-  const handleRemove = async (homeId) => {
-    await removeFavourite(homeId);
-    setRemovingId(homeId);
-    setTimeout(() => {
-      setFavHomes((prev) => prev.filter((h) => h._id !== homeId));
-      setRemovingId(null);
-    }, 350);
-  };
+
+const handleRemove = async (homeId) => {
+  const res = await removeFavourite(homeId);
+  if (!res.success) return; // <-- do not animate if API failed
+  setRemovingId(homeId);
+  setTimeout(() => {
+    setFavHomes(prev => prev.filter(h => h._id !== homeId));
+    setRemovingId(null);
+  }, 350);
+};
+
 
   return (
     <main className="min-h-screen bg-[#0E0D13] text-[#E5E3F3] flex flex-col">

@@ -27,18 +27,16 @@ export const fetchHomeDetails = async (homeId) => {
 };
 
 export const fetchFavourites = async () => {
-  try {
-    const response = await fetch("https://livingo-backend.onrender.com/api/favourites", {
-      method: "GET",
-      credentials: "include",
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log("Error fetching favourites:", error);
-    throw error;
-  }
+  const response = await fetch("https://livingo-backend.onrender.com/api/favourites", {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (response.status === 401) return { unauthorized: true };
+
+  return await response.json();
 };
+
 
 export const addFavourite = async (homeId) => {
   try {
