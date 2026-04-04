@@ -1,7 +1,7 @@
 // src/Pages/User/HomeList.jsx
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import { fetchListedHomes } from "../../Services/userServices"
+import { fetchListedHomes } from "../../Services/fetchListedHomes"
 import HomeCard from "../../Components/HomePageComponents/HomeCard"
 import useDebouncedValue from "../../CustomHooks/userDebouncedValue"
 
