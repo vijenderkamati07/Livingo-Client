@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "${API_BASE}";
 
 export const fetchHostHomes = async () => {
   const res = await fetch(`${API_BASE}/api/host/host-homes`, {
