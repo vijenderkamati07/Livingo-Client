@@ -1,6 +1,8 @@
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "${API_BASE}";
+
 export const fetchHomes = async () => {
   try {
-    const response = await fetch("https://livingo-backend.onrender.com/api/homes", {
+    const response = await fetch(`${API_BASE}/api/homes`, {
       method: "GET",
     });
     const data = await response.json();
@@ -13,7 +15,7 @@ export const fetchHomes = async () => {
 
 export const fetchHomeDetails = async (homeId) => {
   try {
-    const response = await fetch(`https://livingo-backend.onrender.com/api/homes/${homeId}`, {
+    const response = await fetch(`${API_BASE}/api/homes/${homeId}`, {
       method: "GET",
     });
     const data = await response.json();
@@ -27,7 +29,7 @@ export const fetchHomeDetails = async (homeId) => {
 export const fetchFavourites = async () => {
   try {
     const res = await fetch(
-      "https://livingo-backend.onrender.com/api/favourites",
+      `${API_BASE}/api/favourites`,
       {
         method: "GET",
         credentials: "include",
@@ -50,11 +52,9 @@ export const fetchFavourites = async () => {
   }
 };
 
-
-
 export const addFavourite = async (homeId) => {
   try {
-    const response = await fetch("https://livingo-backend.onrender.com/api/favourite", {
+    const response = await fetch(`${API_BASE}/api/favourite`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -73,7 +73,7 @@ export const addFavourite = async (homeId) => {
 export const removeFavourite = async (homeId) => {
   try {
     const response = await fetch(
-      `https://livingo-backend.onrender.com/api/favourite/${homeId}`,
+      `${API_BASE}/api/favourite/${homeId}`,
       {
         method: "DELETE",
         credentials: "include",
@@ -89,3 +89,20 @@ export const removeFavourite = async (homeId) => {
   }
 };
 
+export const fetchListedHomes = async (params = {}) => {
+  const qs = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") {
+      qs.append(key, value);
+    }
+  });
+
+  const res = await fetch(`${API_BASE}/api/listed-homes?${qs.toString()}`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch homes");
+  }
+
+  return res.json(); // { homes, hasMore }
+};

@@ -1,6 +1,6 @@
 
 export const fetchHostHomes = async () => {
-  const res = await fetch("https://livingo-backend.onrender.com/api/host/host-homes", {
+  const res = await fetch(`${API_BASE}/api/host/host-homes`, {
     method: "GET",
     credentials: "include",
   });
@@ -11,7 +11,7 @@ export const fetchHostHomes = async () => {
 };
 
 export const addHomeService = async (formData) => {
-  const res = await fetch("https://livingo-backend.onrender.com/api/host/add-home", {
+  const res = await fetch(`${API_BASE}/api/host/add-home`, {
     method: "POST",
     credentials: "include",
     body: formData,
@@ -28,7 +28,7 @@ export const addHomeService = async (formData) => {
 export const getSingleHomeService = async (homeId) => {
   console.log("Request come for Fetching home details for ID:", homeId);
   const res = await fetch(
-    `https://livingo-backend.onrender.com/api/host/edit-home/${homeId}`,
+    `${API_BASE}/api/host/edit-home/${homeId}`,
     {
       method: "GET",
       credentials: "include",
@@ -45,7 +45,7 @@ export const getSingleHomeService = async (homeId) => {
 
 export const updateHomeService = async (homeId, formData) => {
   const res = await fetch(
-    `https://livingo-backend.onrender.com/api/host/edit-home/${homeId}`,
+    `${API_BASE}/api/host/edit-home/${homeId}`,
     {
       method: "POST",
       credentials: "include",
@@ -59,7 +59,7 @@ export const updateHomeService = async (homeId, formData) => {
 
 export const deleteHomeService = async (homeId) => {
   const res = await fetch(
-    `https://livingo-backend.onrender.com/api/host/delete-home/${homeId}`,
+    `${API_BASE}/api/host/delete-home/${homeId}`,
     {
       method: "POST",
       credentials: "include",

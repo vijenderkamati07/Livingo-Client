@@ -1,6 +1,8 @@
+
+
 export async function signup(form) {
   try {
-    const res = await fetch("https://livingo-backend.onrender.com/api/auth/signup", {
+    const res = await fetch(`${API_BASE}/api/auth/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -21,7 +23,7 @@ export async function signup(form) {
 
 export const login = async (form) => {
   try {
-    const res = await fetch("https://livingo-backend.onrender.com/api/auth/login", {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -39,10 +41,9 @@ export const login = async (form) => {
   }
 };
 
-
 export const logoutService = async () => {
   try {
-    const res = await fetch("https://livingo-backend.onrender.com/api/auth/logout", {
+    const res = await fetch(`${API_BASE}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     });
