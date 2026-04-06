@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "${API_BASE}";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 export async function signup(form) {
   try {
