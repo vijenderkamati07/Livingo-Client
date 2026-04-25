@@ -20,7 +20,6 @@ export default function Favourite() {
         if (data?.unauthorized) {
           // 🔥 backend says session is invalid -> frontend must believe it
           setUser(null);
-          navigate("/login");
           return;
         }
 
