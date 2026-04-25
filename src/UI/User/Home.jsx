@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchHomes } from "../../Services/userServices.js";
+import { fetchHomes } from  "../../Services/userServices";
 import SliderRow from "../../Components/HomePageComponents/SliderRow";
 import HomeCard from "../../Components/HomePageComponents/HomeCard";
 

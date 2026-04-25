@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { fetchFavourites, removeFavourite } from "../../Services/userServices.js";
+import { fetchFavourites, removeFavourite } from  "../../Services/userServices";
 import { Link, useNavigate } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
