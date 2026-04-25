@@ -28,16 +28,14 @@ export const fetchHomeDetails = async (homeId) => {
 
 export const fetchFavourites = async () => {
   try {
-    const res = await fetch(
-      `${API_BASE}/api/favourites`,
-      {
-        method: "GET",
-        credentials: "include",
-      }
-    );
+    const res = await fetch(`${API_BASE}/api/favourites`, {
+      method: "GET",
+      credentials: "include",
+    });
 
+    // Auth case
     if (res.status === 401) {
-      return { unauthorized: true };
+      return { success: false, unauthorized: true, data: [] };
     }
 
     if (!res.ok) {
@@ -45,10 +43,12 @@ export const fetchFavourites = async () => {
     }
 
     const data = await res.json();
-    return data;
+
+    return { success: true, data }; // ALWAYS consistent shape
+
   } catch (error) {
-    console.log("Error fetching favourites:", error);
-    throw error;
+    console.error("Error fetching favourites:", error);
+    return { success: false, error: true, data: [] };
   }
 };
 

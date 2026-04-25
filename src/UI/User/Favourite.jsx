@@ -14,21 +14,19 @@ export default function Favourite() {
 
   useEffect(() => {
     const loadFavs = async () => {
-      try {
-        const data = await fetchFavourites();
+      const res = await fetchFavourites();
 
-        if (data?.unauthorized) {
-          // 🔥 backend says session is invalid -> frontend must believe it
-          setUser(null);
-          return;
-        }
-
-        setFavHomes(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("Failed to load favourites:", err);
-      } finally {
-        setLoading(false);
+      if (res.unauthorized) {
+        setUser(null);
+        navigate("/login");
+        return;
       }
+
+      if (res.success) {
+        setFavHomes(res.data);
+      }
+
+      setLoading(false);
     };
 
     loadFavs();
