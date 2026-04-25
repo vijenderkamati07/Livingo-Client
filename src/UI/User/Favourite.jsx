@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { fetchFavourites, removeFavourite } from "../../Services/userServices";
+import { fetchFavourites, removeFavourite } from "../../Services/userServices.js";
 import { Link, useNavigate } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -127,7 +127,7 @@ const handleRemove = async (homeId) => {
                     className="block relative aspect-[4/3] overflow-hidden"
                   >
                     <img
-                      src={`https://livingo-backend.onrender.com/uploads/${home.photo}`}
+                      src={`http://localhost:3000/uploads/${home.photo}`}
                       alt={home.houseName}
                       className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
                     />
