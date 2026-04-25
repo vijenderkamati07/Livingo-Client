@@ -7,7 +7,6 @@ import "flatpickr/dist/flatpickr.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { fetchHomeDetails, addFavourite } from "../../Services/userServices.js";
 import { fetchHomeDetails, addFavourite } from "../../Services/userServices";
 import Sidebar from "../../Components/Sidebar.jsx";
 import Amenities from "../../Components/Amenities.jsx";
