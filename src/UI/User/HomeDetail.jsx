@@ -7,11 +7,13 @@ import "flatpickr/dist/flatpickr.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
+//Local 
 import { fetchHomeDetails, addFavourite } from "../../Services/userServices";
 import Sidebar from "../../Components/Sidebar.jsx";
 import Amenities from "../../Components/Amenities.jsx";
 import Reviews from "../../Components/Reviews.jsx";
 import HostSection from "../../Components/HostSection.jsx";
+import {createNewBooking } from "../../Services/bookingService.js";
 
 export default function HomeDetail() {
   const { homeId } = useParams();
@@ -20,12 +22,40 @@ export default function HomeDetail() {
   const [home, setHome] = useState(null);
   const [loading, setLoading] = useState(true);
   const [guestCount, setGuestCount] = useState(1);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const handlerAddFavourite = async () => {
     try {
       await addFavourite(homeId);
     } catch (error) {
       console.error("Failed to add to favourites:", error);
+    }
+  };
+
+  const handleBooking = async () => {
+    try {
+      if (!startDate || !endDate) {
+        alert("Please select dates");
+        return;
+      }
+
+      const result = await createNewBooking({
+        homeId,
+        startDate,
+        endDate,
+        person: guestCount,
+      });
+
+      if (result.success) {
+        alert("Booking successful");
+        navigate("/bookings");
+      } else {
+        alert(result.error);
+      }
+
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -68,15 +98,20 @@ export default function HomeDetail() {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
     L.marker([home.lat, home.lng]).addTo(map).bindPopup(home.houseName);
 
-    const checkout = flatpickr("#checkout", {
-      dateFormat: "d-m-Y",
+    const checkin = flatpickr("#checkin", {
+      dateFormat: "Y-m-d",
       minDate: "today",
+      onChange: (dates) => {
+        setStartDate(dates[0]);
+        checkout.set("minDate", dates[0]);
+      },
     });
-
-    flatpickr("#checkin", {
-      dateFormat: "d-m-Y",
+    const checkout = flatpickr("#checkout", {
+      dateFormat: "Y-m-d",
       minDate: "today",
-      onChange: (dates) => checkout.set("minDate", dates[0]),
+      onChange: (dates) => {
+        setEndDate(dates[0]);
+      },
     });
 
     return () => {
@@ -154,6 +189,7 @@ export default function HomeDetail() {
               home={home}
               guestCount={guestCount}
               setGuestCount={setGuestCount}
+              handleBooking={handleBooking}
             />
           </section>
 

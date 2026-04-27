@@ -10,7 +10,7 @@ export default function Favourite() {
   const [loading, setLoading] = useState(true);
   const [removingId, setRemovingId] = useState(null);
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);   // 🔥 we need this
+  const { setUser } = useContext(AuthContext);  
 
   useEffect(() => {
     const loadFavs = async () => {

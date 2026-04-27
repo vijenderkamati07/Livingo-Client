@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Sidebar({ home, guestCount, setGuestCount }) {
+export default function Sidebar({ home, guestCount, setGuestCount, handleBooking }) {
   const [open, setOpen] = useState(false);
 
   const apply = () => setOpen(false);
@@ -59,7 +59,7 @@ export default function Sidebar({ home, guestCount, setGuestCount }) {
         )}
       </div>
 
-      <button className="w-full bg-gradient-to-r from-[#8C5FF6] to-[#F43F63] text-white text-lg font-semibold py-3 rounded-xl">
+      <button className="w-full bg-gradient-to-r from-[#8C5FF6] to-[#F43F63] text-white text-lg font-semibold py-3 rounded-xl" onClick={handleBooking}>
         Book Now
       </button>
 
