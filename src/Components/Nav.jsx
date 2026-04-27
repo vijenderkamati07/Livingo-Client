@@ -116,7 +116,7 @@ export default function Navbar() {
                   )}
 
                   {user.userType === "host" && (
-                    <Link to="/host/host-homes" className="dropdown-btn">Host Dashboard</Link>
+                    <Link to="/host/dashboard" className="dropdown-btn">Host Dashboard</Link>
                   )}
 
                   <button onClick={handleLogout} className="dropdown-btn logout">

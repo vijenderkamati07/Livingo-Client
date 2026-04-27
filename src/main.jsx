@@ -17,6 +17,7 @@ import { AuthProvider } from './Context/AuthContext.jsx'
 import { ToastContainer } from "react-toastify";
 import LostPage from './UI/LostPage.jsx';
 import Profile from './UI/User/Profile.jsx';
+import HostDashboard from './UI/Host/HostDashboard.jsx';
 
 
 const router=createBrowserRouter([
@@ -67,6 +68,10 @@ const router=createBrowserRouter([
       {
         path:"/user/profile",
         element:<Profile/>
+      },
+      {
+        path:"/host/dashboard",
+        element:<HostDashboard/>
       },
       { 
         path: "*",
