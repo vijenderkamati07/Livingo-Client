@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import LostPage from './UI/LostPage.jsx';
 import Profile from './UI/User/Profile.jsx';
 import HostDashboard from './UI/Host/HostDashboard.jsx';
+import HostProfile from "./UI/Host/hostProfile.jsx"
 
 
 const router=createBrowserRouter([
@@ -72,6 +73,10 @@ const router=createBrowserRouter([
       {
         path:"/host/dashboard",
         element:<HostDashboard/>
+      },
+      {
+        path:"/host/profile",
+        element:<HostProfile/>
       },
       { 
         path: "*",

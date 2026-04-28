@@ -106,7 +106,7 @@ export default function Navbar() {
 
                 <div className="absolute right-0 mt-2 w-52 bg-[#18171F] border border-[#2D2A37] rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out dropdown-menu">
 
-                  <Link to="/user/profile" className="dropdown-btn">My Profile</Link>
+                  <Link to="/host/profile" className="dropdown-btn">My Profile</Link>
 
                   {user.userType === "guest" && (
                     <>
@@ -169,7 +169,7 @@ export default function Navbar() {
             ) : null}
 
             {user && <li><Link to="/bookings" className="ui-action">Bookings</Link></li>}
-            {user && <li><Link to="/user/profile" className="ui-action">Profile</Link></li>}
+            {user && <li><Link to="/host/profile" className="ui-action">Profile</Link></li>}
 
             {user ? (
               <button onClick={handleLogout} className="text-left w-full text-[#F97373] ui-action">Logout</button>
