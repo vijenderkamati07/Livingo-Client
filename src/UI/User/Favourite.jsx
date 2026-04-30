@@ -5,6 +5,8 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AuthContext } from "../../Context/AuthContext";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 export default function Favourite() {
   const [favHomes, setFavHomes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -124,7 +126,7 @@ const handleRemove = async (homeId) => {
                     className="block relative aspect-[4/3] overflow-hidden"
                   >
                     <img
-                      src={`http://localhost:3000/uploads/${home.photo}`}
+                      src={`${API_BASE}/uploads/${home.photo}`}
                       alt={home.houseName}
                       className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
                     />
