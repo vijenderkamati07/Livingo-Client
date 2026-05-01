@@ -9,11 +9,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 //Local 
 import { fetchHomeDetails, addFavourite } from "../../Services/userServices";
-import Sidebar from "../../Components/Sidebar.jsx";
 import Amenities from "../../Components/Amenities.jsx";
 import Reviews from "../../Components/Reviews.jsx";
 import HostSection from "../../Components/HostSection.jsx";
 import {createNewBooking } from "../../Services/bookingService.js";
+import BookingCard from "../../Components/BookingCard.jsx";
+import BookingSuccessModal from "../../Components/BookingSuccessModal.jsx"
 
 export default function HomeDetail() {
   const { homeId } = useParams();
@@ -24,6 +25,8 @@ export default function HomeDetail() {
   const [guestCount, setGuestCount] = useState(1);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [bookingData, setBookingData] = useState(null);
 
   const handlerAddFavourite = async () => {
     try {
@@ -48,8 +51,8 @@ export default function HomeDetail() {
       });
 
       if (result.success) {
-        alert("Booking successful");
-        navigate("/bookings");
+        setBookingData(result.data);
+        setShowModal(true);
       } else {
         alert(result.error);
       }
@@ -185,10 +188,12 @@ export default function HomeDetail() {
               <div id="map" className="h-64 w-full rounded-xl shadow-xl" />
             </div>
 
-            <Sidebar
+            <BookingCard
               home={home}
               guestCount={guestCount}
               setGuestCount={setGuestCount}
+              startDate={startDate}
+              endDate={endDate}
               handleBooking={handleBooking}
             />
           </section>
@@ -198,6 +203,14 @@ export default function HomeDetail() {
           <HostSection host={home.host} />
         </div>
       )}
+      <BookingSuccessModal
+        open={showModal}
+        onClose={() => {
+          setShowModal(false);
+          navigate("/bookings");
+        }}
+        booking={bookingData}
+      />
     </main>
   );
 }
