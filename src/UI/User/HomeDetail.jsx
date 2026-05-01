@@ -16,6 +16,7 @@ import {createNewBooking } from "../../Services/bookingService.js";
 import BookingCard from "../../Components/BookingCard.jsx";
 import BookingSuccessModal from "../../Components/BookingSuccessModal.jsx"
 
+
 export default function HomeDetail() {
   const { homeId } = useParams();
   const navigate = useNavigate();
@@ -66,23 +67,19 @@ export default function HomeDetail() {
 
       console.log("Booking Response:", result);
 
+      if (!result.success) {
+      setBookingData({
+        error: true,
+        message: result.message,
+      });
+      setShowModal(true);
+      return;
+    }
       // ✅ SUCCESS
       if (result.success) {
         setBookingData(result.booking);
         setShowModal(true);
-        return;
       }
-
-      // ❌ FAILURE FROM API
-      setBookingData({
-        error: true,
-        message:
-          result.errors?.[0] ||
-          result.message ||
-          result.error ||
-          "Booking failed. Please try again.",
-      });
-      setShowModal(true);
 
     } catch (err) {
       console.error(err);
@@ -171,13 +168,12 @@ export default function HomeDetail() {
       {!loading && home && (
         <div className="home-fade show">
           {/* GALLERY */}
-          {/* GALLERY */}
           <section className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-xl overflow-hidden">
 
               {/* Main Image */}
               <img
-                src={home.photo[0]}
+                src={`https://livingo-backend.onrender.com/uploads/${home.photo[0]}`}
                 className="h-[420px] w-full object-cover rounded-xl"
                 alt={home?.houseName}
               />
@@ -187,7 +183,7 @@ export default function HomeDetail() {
                 {home.photo?.slice(1, 5).map((img, i) => (
                   <img
                     key={i}
-                    src={img}
+                    src={`https://livingo-backend.onrender.com/uploads/${img}`}
                     className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-105 transition"
                     alt={`gallery-${i}`}
                   />

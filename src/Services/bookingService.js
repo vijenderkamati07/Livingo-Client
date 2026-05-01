@@ -52,7 +52,7 @@ export const createNewBooking = async (form) => {
     const data = await response.json();
 
     if (!response.ok) {
-      return { success: false, errors: data.errors || ["Booking failed"] };
+      return { success: false, message: data.message || ["Booking failed"] };
     }
 
     return {
