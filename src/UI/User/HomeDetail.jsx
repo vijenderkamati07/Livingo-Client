@@ -68,7 +68,7 @@ export default function HomeDetail() {
 
       // ✅ SUCCESS
       if (result.success) {
-        setBookingData(result.data); // MUST be correct from backend
+        setBookingData(result.booking);
         setShowModal(true);
         return;
       }
@@ -79,6 +79,7 @@ export default function HomeDetail() {
         message:
           result.errors?.[0] ||
           result.message ||
+          result.error ||
           "Booking failed. Please try again.",
       });
       setShowModal(true);
@@ -151,6 +152,8 @@ export default function HomeDetail() {
     });
 
     return () => {
+      checkin?.destroy?.();
+      checkout?.destroy?.();
       map.remove();
     };
   }, [home, loading]);
@@ -168,23 +171,29 @@ export default function HomeDetail() {
       {!loading && home && (
         <div className="home-fade show">
           {/* GALLERY */}
+          {/* GALLERY */}
           <section className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-xl overflow-hidden">
+
+              {/* Main Image */}
               <img
-                src={`https://livingo-backend.onrender.com/uploads/${home.photo[0]}`}
+                src={home.photo[0]}
                 className="h-[420px] w-full object-cover rounded-xl"
-                alt={home.houseName}
+                alt={home?.houseName}
               />
+
+              {/* Side Gallery */}
               <div className="grid grid-cols-2 gap-4 h-[420px]">
-                {home.photo.slice(1, 5).map((img, i) => (
+                {home.photo?.slice(1, 5).map((img, i) => (
                   <img
                     key={i}
-                    src={`https://livingo-backend.onrender.com/uploads/${img}`}
-                    className="w-full h-full object-cover rounded-xl cursor-pointer"
+                    src={img}
+                    className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-105 transition"
                     alt={`gallery-${i}`}
                   />
                 ))}
               </div>
+
             </div>
           </section>
 
@@ -231,16 +240,18 @@ export default function HomeDetail() {
             />
           </section>
 
-          <Amenities amenities={home.amenities} />
-          <Reviews reviews={home.reviews} />
-          <HostSection host={home.host} />
+          {home.amenities?.length > 0 && <Amenities amenities={home.amenities} />}
+          {home.reviews?.length > 0 && <Reviews reviews={home.reviews} />}
+          {home.host?.name && <HostSection host={home.host} />}
         </div>
       )}
       <BookingSuccessModal
         open={showModal}
         onClose={() => {
           setShowModal(false);
-          navigate("/bookings");
+          if (!bookingData?.error) {
+            navigate("/bookings");
+          }
         }}
         booking={bookingData}
       />
